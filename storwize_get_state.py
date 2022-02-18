@@ -186,7 +186,8 @@ def discovering_resources(storwize_user, storwize_password, storwize_ip, storwiz
 					if ['lsvdisk', 'lsmdisk', 'lsmdiskgrp'].count(resource) == 1:
 						one_object_list = {}
 						one_object_list["{#ID}"] = one_object["id"]
-						one_object_list["{#NAME}"] = one_object["name"] 
+						one_object_list["{#NAME}"] = one_object["name"]
+						one_object_list["{#CAPACITY}"] = one_object["capacity"] 
 						discovered_resource.append(one_object_list)
 					elif ['lsenclosurebattery', 'lsenclosurepsu', 'lsenclosurecanister'].count(resource) == 1:
 						one_object_list = {}
@@ -313,7 +314,9 @@ def get_status_resources(storwize_user, storwize_password, storwize_ip, storwize
 						state_resources.append("%s %s %s %s" % (storage_name, key_running, timestampnow, convert_text_to_numeric(one_object["status"])))
 					elif ['lsvdisk', 'lsmdisk'].count(resource) == 1:
 						key_health = "health.{0}.[{1}]".format(resource, one_object["name"])
+						key_capacity = "capacity.{0}.[{1}]".format(resource, one_object["name"])
 						state_resources.append("%s %s %s %s" % (storage_name, key_health, timestampnow, convert_text_to_numeric(one_object["status"])))
+						state_resources.append("%s %s %s %s" % (storage_name, key_capacity, timestampnow,  convert_capacity_to_bytes(one_object["capacity"])))
 
 				state_resources.append("%s %s %s %s" %(storage_name, "is_there_expansion_enclosure", timestampnow, is_there_expansion_enclosure))
 	except Exception as pizdec:
