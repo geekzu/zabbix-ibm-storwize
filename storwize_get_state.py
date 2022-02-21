@@ -202,6 +202,7 @@ def discovering_resources(storwize_user, storwize_password, storwize_ip, storwiz
 					elif ['lsportfc', 'lsportsas'].count(resource) == 1:
 						one_object_list = {}
 						one_object_list["{#PORT_ID}"] = one_object["port_id"]
+						one_object_list["{#PORT_SPEED}"] = one_object["port_speed"]
 						one_object_list["{#NODE_NAME}"] = one_object["node_name"]
 						discovered_resource.append(one_object_list)
 					elif ['lsenclosure'].count(resource) == 1:
