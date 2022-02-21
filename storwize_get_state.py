@@ -210,6 +210,7 @@ def discovering_resources(storwize_user, storwize_password, storwize_ip, storwiz
 						one_object_list["{#ID}"] = one_object["id"]
 						one_object_list["{#MTM}"] = one_object["product_MTM"]
 						one_object_list["{#SERIAL_NUMBER}"] = one_object["serial_number"]
+						one_object_list["{#TYPE}"] = one_object["type"]
 						discovered_resource.append(one_object_list)
 					elif ['lsdrive'].count(resource) == 1:
 						one_object_list = {}
